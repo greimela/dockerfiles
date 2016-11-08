@@ -1,5 +1,10 @@
-FROM ros:kinetic
+FROM ros:indigo
+
+# install ros packages
+RUN apt-get update && apt-get install -y \
+    vim \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /projects
 
-CMD tail -f /dev/null
+CMD /ros_entrypoint.sh && tail -f /dev/null
